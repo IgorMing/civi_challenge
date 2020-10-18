@@ -1,41 +1,23 @@
-import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import React from 'react';
+import MessagesScreen from './screens/Messages';
+import DetailsScreen from './screens/Details';
 
-import AuthTabNavigator from './screens/Authenticated/bottom-tab-navigator';
-
-import { useTypedSelector } from './reducers';
-import { useDispatch } from 'react-redux';
-import { checkAuth } from './modules/auth/duck';
-import NotAuthenticatedStackNavigator from './screens/NotAuthenticated/stack-navigator';
-import { Spinner } from './components';
-
-export type RootStackParamList = {
-  Home: undefined;
+type RootStackParamList = {
+  Messages: undefined;
   Details: { id: string | null };
-  Profile: undefined;
-  Signin: undefined;
-  Signup: undefined;
 };
 
+const Stack = createStackNavigator<RootStackParamList>();
+
 const Navigator: React.FC = () => {
-  const dispatch = useDispatch();
-  const { isSignedin, isSigningOut } = useTypedSelector((state) => state.auth);
-
-  useEffect(() => {
-    dispatch(checkAuth());
-  }, [dispatch]);
-
-  if (isSignedin === null) {
-    return <Spinner />;
-  }
-
   return (
     <NavigationContainer>
-      {isSignedin ? (
-        <AuthTabNavigator />
-      ) : (
-        <NotAuthenticatedStackNavigator isSigningOut={isSigningOut} />
-      )}
+      <Stack.Navigator>
+        <Stack.Screen name="Messages" component={MessagesScreen} />
+        <Stack.Screen name="Details" component={DetailsScreen} />
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
