@@ -4,11 +4,12 @@ import { MessageProps } from './types';
 
 const Message: React.FC<MessageProps> = (props) => {
   const { read } = props;
+  const date = 1603256456078;
 
   return (
-    <Styled.Touchable read={read}>
+    <Styled.Touchable onPress={props.onClick} read={read}>
       <Styled.Title read={read}>Message A</Styled.Title>
-      <Styled.Date>18-03-2020</Styled.Date>
+      <Styled.Date>{date}</Styled.Date>
     </Styled.Touchable>
   );
 };

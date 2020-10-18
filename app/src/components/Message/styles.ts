@@ -1,8 +1,8 @@
 import styled from 'styled-components/native';
-import { MessageProps } from './types';
+import { MessageStyleProps } from './types';
 
 export default {
-  Touchable: styled.TouchableOpacity<MessageProps>`
+  Touchable: styled.TouchableOpacity<MessageStyleProps>`
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -11,7 +11,7 @@ export default {
     border-bottom-color: lightgray;
     opacity: ${({ read }) => (read ? '0.4' : '1')};
   `,
-  Title: styled.Text<MessageProps>`
+  Title: styled.Text<MessageStyleProps>`
     font-weight: ${({ read }) => (read ? 'normal' : 'bold')};
     font-size: 20px;
   `,
