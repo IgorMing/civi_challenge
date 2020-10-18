@@ -14,7 +14,7 @@ const Stack = createStackNavigator<RootStackParamList>();
 const Navigator: React.FC = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName="Messages">
         <Stack.Screen name="Messages" component={MessagesScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>
