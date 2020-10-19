@@ -11,9 +11,14 @@ export default {
     border-bottom-width: 1px;
     border-bottom-color: lightgray;
   `,
+  Block: styled.View`
+    flex-direction: row;
+    align-items: center;
+  `,
   Title: styled(Text)<MessageStyleProps>`
     font-weight: ${({ read }) => (read ? 'normal' : 'bold')};
     font-size: 20px;
+    padding-left: 15px;
   `,
   Date: styled(Text)`
     font-size: 16px;
