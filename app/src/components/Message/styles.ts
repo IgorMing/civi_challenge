@@ -10,6 +10,7 @@ export default {
     padding: 25px 20px;
     border-bottom-width: 1px;
     border-bottom-color: lightgray;
+    background-color: ${({ read }) => (read ? '#aaaaaa22' : 'white')};
   `,
   Block: styled.View`
     flex-direction: row;

@@ -25,8 +25,6 @@ const Details: React.FC<DetailsProps> = ({ route }) => {
 
   const { timestamp, detail } = data;
 
-  console.log(data);
-
   return (
     <Styled.Container>
       <Styled.HorizontalBlock>
