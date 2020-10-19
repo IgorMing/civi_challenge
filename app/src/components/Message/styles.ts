@@ -4,7 +4,7 @@ import { MessageStyleProps } from './types';
 export default {
   Touchable: styled.TouchableOpacity<MessageStyleProps>`
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding: 25px 20px;
     border-bottom-width: 1px;
@@ -17,7 +17,5 @@ export default {
   `,
   Date: styled.Text`
     font-size: 16px;
-
-    align-self: flex-end;
   `
 };
