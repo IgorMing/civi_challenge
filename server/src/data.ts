@@ -13,12 +13,37 @@ export function generateMessage(subject: string, timestamp?: number) {
     id: uuid,
     timestamp: date,
     subject: subject,
-    detail: defaultDetail
+    detail: defaultDetail,
+    read: false
   });
 }
 
 export function get() {
   return data;
+}
+
+export function getById(id?: string) {
+  if (!id) {
+    return;
+  }
+
+  return data.find((message) => message.id === id);
+}
+
+export function setReadById(id?: string) {
+  if (!id) {
+    return;
+  }
+
+  const found = getById(id);
+
+  if (!found) {
+    return;
+  }
+
+  found.read = true;
+
+  return found;
 }
 
 export function init() {

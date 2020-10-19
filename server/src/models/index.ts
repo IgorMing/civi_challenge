@@ -3,4 +3,5 @@ export interface Message {
   timestamp: number;
   subject: string;
   detail?: string;
+  read: boolean;
 }

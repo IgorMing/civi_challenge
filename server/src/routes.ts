@@ -1,6 +1,6 @@
 import { Router } from 'https://deno.land/x/oak/mod.ts';
 import { Message } from './models/index.ts';
-import { get, init } from './data.ts';
+import { get, getById, init, setReadById } from './data.ts';
 
 const router = new Router();
 
@@ -17,8 +17,7 @@ router.get('/messages', async (context) => {
 });
 
 router.get('/messages/:id', (context) => {
-  const data = get();
-  const found = data.find((message) => message.id === context.params.id);
+  const found = getById(context.params.id);
 
   if (found) {
     context.response.status = 200;
@@ -26,6 +25,18 @@ router.get('/messages/:id', (context) => {
   } else {
     context.response.status = 404;
     context.response.body = 'not found';
+  }
+});
+
+router.patch('/messages/:id', (context) => {
+  const changedMessage = setReadById(context.params.id);
+
+  if (changedMessage) {
+    context.response.status = 200;
+    context.response.body = changedMessage;
+  } else {
+    context.response.status = 400;
+    context.response.body = 'not able to update the message';
   }
 });
 
