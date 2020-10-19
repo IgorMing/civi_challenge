@@ -1,5 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useEffect, useReducer } from 'react';
+import { useFocusEffect, useNavigation } from '@react-navigation/native';
+import React, { useCallback, useReducer } from 'react';
 import http from '~/commons/http';
 import { Message as MessageProps } from '~/commons/types';
 import Message from '~/components/Message';
@@ -12,20 +12,23 @@ const Messages: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
   const orderedList = orderedData(state);
 
-  useEffect(() => {
-    async function fetch() {
-      try {
-        const response = await http.get('/messages');
-        dispatch(setData(response.data));
-      } catch (err) {
-        console.log(err);
+  useFocusEffect(
+    useCallback(() => {
+      async function fetch() {
+        try {
+          const response = await http.get('/messages');
+          dispatch(setData(response.data));
+        } catch (err) {
+          console.log(err);
+        }
       }
-    }
 
-    fetch();
-  }, []);
+      fetch();
+    }, [])
+  );
 
-  function navigate(id: string, title: string) {
+  async function onMessageClick(id: string, title: string) {
+    await http.patch(`/messages/${id}`);
     navigation.navigate('Details', { id, title });
   }
 
@@ -33,7 +36,7 @@ const Messages: React.FC = () => {
     <Styled.Container>
       <Styled.Scrollable>
         {orderedList.map((message: MessageProps) => (
-          <Message onClick={navigate} {...message} />
+          <Message key={message.id} onClick={onMessageClick} {...message} />
         ))}
       </Styled.Scrollable>
     </Styled.Container>

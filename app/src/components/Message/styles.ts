@@ -10,7 +10,6 @@ export default {
     padding: 25px 20px;
     border-bottom-width: 1px;
     border-bottom-color: lightgray;
-    opacity: ${({ read }) => (read ? '0.4' : '1')};
   `,
   Title: styled(Text)<MessageStyleProps>`
     font-weight: ${({ read }) => (read ? 'normal' : 'bold')};
