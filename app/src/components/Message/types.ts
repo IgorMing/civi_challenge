@@ -5,5 +5,5 @@ export interface MessageStyleProps {
 }
 
 export interface MessageProps extends MessageStyleProps, Message {
-  onClick: (id: string) => void;
+  onClick: (id: string, title: string) => void;
 }

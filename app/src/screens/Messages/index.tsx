@@ -25,8 +25,8 @@ const Messages: React.FC = () => {
     fetch();
   }, []);
 
-  function navigate(id: number) {
-    navigation.navigate('Details', { id });
+  function navigate(id: string, title: string) {
+    navigation.navigate('Details', { id, title });
   }
 
   return (

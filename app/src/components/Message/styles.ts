@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import Text from '../Text';
 import { MessageStyleProps } from './types';
 
 export default {
@@ -11,11 +12,11 @@ export default {
     border-bottom-color: lightgray;
     opacity: ${({ read }) => (read ? '0.4' : '1')};
   `,
-  Title: styled.Text<MessageStyleProps>`
+  Title: styled(Text)<MessageStyleProps>`
     font-weight: ${({ read }) => (read ? 'normal' : 'bold')};
     font-size: 20px;
   `,
-  Date: styled.Text`
+  Date: styled(Text)`
     font-size: 16px;
   `
 };
