@@ -2,6 +2,7 @@ import { v4 } from 'https://deno.land/std/uuid/mod.ts';
 import { Message } from './models/index.ts';
 
 const data: Message[] = [];
+let accumulator = 0; // sorry about this
 const defaultDetail =
   'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum';
 
@@ -18,7 +19,13 @@ export function generateMessage(subject: string, timestamp?: number) {
   });
 }
 
-export function get() {
+export function get(addNew: string | null) {
+  if (addNew === '1') {
+    const title = `New message ${accumulator === 0 ? '' : accumulator}`;
+    generateMessage(title);
+    accumulator++;
+  }
+
   return data;
 }
 

@@ -1,11 +1,14 @@
 import { Router } from 'https://deno.land/x/oak/mod.ts';
+import { get, getById, setReadById } from './data.ts';
 import { Message } from './models/index.ts';
-import { get, getById, init, setReadById } from './data.ts';
 
 const router = new Router();
 
 router.get('/messages', async (context) => {
-  const parsedData: Message[] = get();
+  const urlParams = new URLSearchParams(context.request.url.search);
+  const addNew = urlParams.get('new');
+  console.log('new', addNew);
+  const parsedData: Message[] = get(addNew);
   const response = parsedData.map((message) => {
     const instance = { ...message };
     delete instance.detail;
