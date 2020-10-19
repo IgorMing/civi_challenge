@@ -4,7 +4,7 @@ import React from 'react';
 import MessagesScreen from './screens/Messages';
 import DetailsScreen from './screens/Details';
 
-type RootStackParamList = {
+export type RootStackParamList = {
   Messages: undefined;
   Details: { id: string | null };
 };
